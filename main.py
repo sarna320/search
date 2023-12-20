@@ -6,13 +6,14 @@ def main():
     times_N = []
     times_KR = []
 
-    number_of_words = list(range(10, 50, 10))
+    number_of_words = list(range(100, 1100, 100))
     path = "pan-tadeusz.txt"
     all_words = file.load_file(path, -1)
+    #print(all_words)
     for num in number_of_words:
         print(num)
         words = file.load_file(path, num)
-
+        #print(words)
         start = time.process_time()
         for word in words:
             KMP.find_kmp(word, all_words)

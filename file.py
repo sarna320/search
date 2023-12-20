@@ -15,9 +15,13 @@ def load_file(path, n):
     data = unidecode.unidecode(data)
 
     if n == -1:
-        return data
+        list_of_words = re.split("[^a-z]+", data)
+        list_of_words = ' '.join([word for word in list_of_words if len(word) > 2])
+
     if n > 0:
         list_of_words = re.split("[^a-z]+", data, n)
         list_of_words.pop()  # we delete rest of words that we do not need
+        list_of_words = [word for word in list_of_words if len(word) > 2]
+
 
     return list_of_words
