@@ -1,31 +1,29 @@
-from KMP import *
-from KR import *
-from N import *
-
+from KMP import find_kmp
+from KR import find_karp_rabin
+from N import find_naive
 import random
-import string
 
 
 def test_naive():
-    # Test pustego wzorca
+    # Test empty pattern
     assert find_naive("", "abcde") == [0, 1, 2, 3, 4, 5]
 
-    # Test pustego tekstu
+    # Test empty text
     assert find_naive("abc", "") == []
 
-    # Test pustego wzorca i tekstu
+    # Test empty pattern i text
     assert find_naive("", "") == [0]
 
-    # Test wzorca równego tekstowi
+    # Test pattern = text
     assert find_naive("abc", "abc") == [0]
 
-    # Test wzorca dłuższego od tekstu
+    # Test pattern longer than text
     assert find_naive("abcdef", "abc") == []
 
-    # Test wzorca nie występującego w tekście
+    # Test pattern not in text
     assert find_naive("xyz", "abc") == []
 
-    # Kilka zestawów danych testowych
+    # Test data sets
     assert find_naive("abc", "abcdeabc") == [0, 5]
     assert find_naive("abc", "abcabcabc") == [0, 3, 6]
     assert find_naive("abc", "ababab") == []
@@ -34,20 +32,23 @@ def test_naive():
 
 
 def test_algorithms():
+    # Setup for generating random texts and patterns
     alphabet = "ab"
     num_tests = 100
 
     for _ in range(num_tests):
+        # Generating random texts and patterns
         text_length = random.randint(1, 100)
         pattern_length = random.randint(1, text_length)
         text = "".join(random.choice(alphabet) for _ in range(text_length))
         pattern = "".join(random.choice(alphabet) for _ in range(pattern_length))
 
+        # Testing Naive, KMP, and Karp-Rabin algorithms
         naive_result = find_naive(pattern, text)
         kmp_result = find_kmp(pattern, text)
         karp_rabin_result = find_karp_rabin(pattern, text)
 
-        # Porównaj wyniki z algorytmem naiwnym
+        # Asserting that KMP and Karp-Rabin results match with Naive algorithm
         assert kmp_result == naive_result
         assert karp_rabin_result == naive_result
     print("KMP and KR passed tests")
