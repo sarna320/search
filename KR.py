@@ -1,4 +1,7 @@
 def calculate_hash(text, length):
+    if len(text) < length:
+        return 0
+    
     hash_value = 0
     prime = 101  # A prime number
 
@@ -9,6 +12,9 @@ def calculate_hash(text, length):
 
 
 def find_karp_rabin(string, text):
+    if not string:
+        return list(range(len(text) + 1))
+    
     positions = []
     len_string = len(string)
     len_text = len(text)
@@ -28,3 +34,4 @@ def find_karp_rabin(string, text):
             ) % prime
 
     return positions
+

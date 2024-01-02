@@ -20,6 +20,9 @@ def compute_lps_array(pattern):
 
 
 def find_kmp(string, text):
+    if not string:
+        return list(range(len(text) + 1))
+
     positions = []
     len_string = len(string)
     len_text = len(text)
@@ -42,3 +45,4 @@ def find_kmp(string, text):
                 i += 1
 
     return positions
+

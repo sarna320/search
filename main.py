@@ -3,6 +3,7 @@ import file, KMP, KR, N, time, plot
 
 def main():
     times_KMP = []
+
     times_N = []
     times_KR = []
 
@@ -24,7 +25,6 @@ def main():
         start = time.process_time()
         for word in words:
             KR.find_karp_rabin(word, all_words)
-            continue
         stop = time.process_time()
         times_KR.append(stop - start)
         print("KR done")
