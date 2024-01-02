@@ -1,4 +1,6 @@
 def calculate_hash(text, length):
+    if len(text) < length:
+        return 0
     # Initialize hash value to 0
     hash_value = 0
     # Prime number for hashing calculations

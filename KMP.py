@@ -28,6 +28,8 @@ def compute_lps_array(pattern):
 
 
 def find_kmp(string, text):
+    if not string:
+        return list(range(len(text) + 1))
     # List to store positions where the string is found in the text
     positions = []
     # Lengths of the string and text
